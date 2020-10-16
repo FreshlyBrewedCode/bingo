@@ -1,15 +1,15 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-export default function Edit() {
+export default function Edit({ title, words }) {
     return (
         <div>
             <h2>Edit</h2>
-            <Container>
+            <Container action="/">
                 <Label htmlFor="title">Title</Label>
-                <TextInput id="title" name="t" type="text" />
+                <TextInput id="title" name="t" type="text" defaultValue={title} />
                 <Label htmlFor="words">Words</Label>
-                <TextArea id="words" name="w" />
+                <TextArea id="words" name="w" defaultValue={words} />
                 <Button type="submit">Start</Button>
             </Container>
         </div>

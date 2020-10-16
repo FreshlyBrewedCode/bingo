@@ -9,12 +9,12 @@ function App() {
 
   const title = useSearchParam("t");
   const words = useSearchParam("w");
-  const edit = !title || !words;
+  const edit = useLocation().pathname.endsWith("/edit") || !title || !words;
 
   return (
     <Container className="App">
       {edit ?
-        <Edit />
+        <Edit {...{ title, words }} />
         :
         <Bingo {...{ title, words }} />
       }
