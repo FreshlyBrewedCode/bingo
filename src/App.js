@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useLocation, useSearchParam } from 'react-use';
+import styled from 'styled-components';
 import './App.css';
+import Bingo from './Components/Bingo';
+import Edit from './Components/Edit';
 
 function App() {
+
+  const title = useSearchParam("t");
+  const words = useSearchParam("w");
+  const edit = !title || !words;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="App">
+      {edit ?
+        <Edit />
+        :
+        <Bingo {...{ title, words }} />
+      }
+    </Container>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`
 
 export default App;
